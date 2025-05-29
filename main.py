@@ -6,6 +6,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import os
 
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        print(f"GPU found: {len(gpus)}")
+    except RuntimeError as e:
+        print(f"GPU setup error: {e}")
+else:
+    print("No GPU found")
+
 class MusicGenreCNN:
     def __init__(self, input_shape=(128, 431, 1), num_classes=10):
         self.input_shape = input_shape
@@ -53,7 +64,7 @@ class MusicGenreCNN:
             X_train, y_train,
             validation_data=(X_val, y_val),
             epochs=epochs,
-            batch_size=16
+            batch_size=32
         )
 
 def load_data(data_dir):
