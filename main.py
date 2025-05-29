@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import os
+import pickle
 
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
@@ -105,3 +106,6 @@ if __name__ == "__main__":
     print(f"Test accuracy: {test_acc:.3f}")
     
     cnn.model.save("music_genre_model.h5")
+    
+    with open("label_encoder.pkl", "wb") as f:
+        pickle.dump(le, f)
