@@ -65,7 +65,7 @@ class MusicGenreCNN:
             X_train, y_train,
             validation_data=(X_val, y_val),
             epochs=epochs,
-            batch_size=32
+            batch_size=16
         )
 
 def load_data(data_dir):
