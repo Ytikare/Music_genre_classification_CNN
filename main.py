@@ -1,3 +1,7 @@
+import os
+os.environ['TF_DISABLE_MKL'] = '1'
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
